@@ -1,8 +1,6 @@
 from django.contrib import admin
 from .models import College, Program, Organization, Student, OrgMember
 
-
-# ===== OWNER TASKS =====
 @admin.register(College)
 class CollegeAdmin(admin.ModelAdmin):
     list_display = ("college_name", "created_at", "updated_at")
@@ -24,7 +22,6 @@ class OrganizationAdmin(admin.ModelAdmin):
     list_filter = ("college",)
 
 
-# ===== COLLABORATOR TASKS =====
 @admin.register(Student)
 class StudentAdmin(admin.ModelAdmin):
     list_display = ("student_id", "lastname", "firstname", "middlename", "program")
