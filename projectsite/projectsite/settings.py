@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-$v-azr0=idku(h!!i_x_z-b25(ko$2)&87h410iylw3y!iy79#
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['akosimia.pythonanywhere.com', '127.0.0.1']
+ALLOWED_HOSTS = ['akosimia13.pythonanywhere.com', '127.0.0.1']
 
 
 # Application definition
