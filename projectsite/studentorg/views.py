@@ -3,7 +3,7 @@ from django.shortcuts import render
 from django.views.generic.list import ListView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView 
 from studentorg.models import Organization, OrgMember
-from studentorg.forms import OrganizationForm
+from studentorg.forms import OrganizationForm, MemberForm
 from django.urls import reverse_lazy 
 
 class HomePageView(ListView):
@@ -40,3 +40,9 @@ class MembersListView(ListView):
    context_object_name = 'member'
    template_name = 'member_list.html'
    paginate_by = 5
+
+class MembersCreateView(CreateView):
+  model = OrgMember
+  form_class = MemberForm
+  template_name = 'member_form.html'
+  success_url = reverse_lazy('member-list')
