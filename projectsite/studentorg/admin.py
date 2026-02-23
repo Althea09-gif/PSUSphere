@@ -25,7 +25,7 @@ class OrganizationAdmin(admin.ModelAdmin):
 
 @admin.register(Student)
 class StudentAdmin(admin.ModelAdmin):
-    list_display = ("student_id", "lastname", "firstname", "middlename", "program")
+    list_display = ("id", "lastname", "firstname", "middlename", "program")
     search_fields = ("lastname", "firstname")
 
 
