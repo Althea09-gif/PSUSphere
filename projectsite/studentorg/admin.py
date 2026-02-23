@@ -25,14 +25,16 @@ class OrganizationAdmin(admin.ModelAdmin):
 
 @admin.register(Student)
 class StudentAdmin(admin.ModelAdmin):
-    list_display = ("student_id", "lastname", "firstname", "middlename", "program")
+    list_display = ("lastname", "firstname", "middlename", "program")
     search_fields = ("lastname", "firstname")
+    list_filter = ("program",)
 
 
 @admin.register(OrgMember)
 class OrgMemberAdmin(admin.ModelAdmin):
     list_display = ("student", "get_member_program", "organization", "date_joined")
     search_fields = ("student__lastname", "student__firstname")
+    list_filter = ("organization",)
 
     def get_member_program(self, obj):
         return obj.student.program
