@@ -19,7 +19,7 @@ class ProgramAdmin(admin.ModelAdmin):
 @admin.register(Organization)
 class OrganizationAdmin(admin.ModelAdmin):
     list_display = ("name", "college", "description")
-    search_fields = ("name", "description")
+    search_fields = ("name", "college__college_name")
     list_filter = ("college",)
 
 
