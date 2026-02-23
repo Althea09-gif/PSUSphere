@@ -52,3 +52,8 @@ class MembersUpdateView(UpdateView):
    form_class = MemberForm
    template_name = 'member_form.html'
    success_url = reverse_lazy('member-list')
+
+class MembersDeleteView(DeleteView):
+  model = OrgMember
+  template_name = 'member_del.html'
+  success_url = reverse_lazy('member-list')
