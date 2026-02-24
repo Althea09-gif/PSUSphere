@@ -29,6 +29,8 @@ class HomePageView(ListView):
              
              )
        context["students_joined_this_year"] = count
+       context["organization_count"] = Organization.objects.count()
+       context["prog_count"] = Program.objects.count()
 
        return context
 
@@ -91,6 +93,13 @@ class MembersListView(ListView):
         )
 
     return qs
+   
+   def get_ordering(self):
+      allowed = ["student__lastname", "date_joined"]
+      sort_by = self.request.GET.get("sort_by")
+      if sort_by in allowed:
+         return sort_by
+      return "student__lastname"
 
 
       
@@ -133,7 +142,6 @@ class StudentListView(ListView):
         )
 
     return qs
-    
 
 
 class StudentCreateView(CreateView):
