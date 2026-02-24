@@ -15,7 +15,6 @@
 <body>
   <div class="wrapper">
 
-    <!-- MAIN HEADER -->
     <div class="main-header">
       <div class="logo-header">
         <a href="{% url 'home' %}" class="logo">Ready Dashboard</a>
@@ -177,6 +176,13 @@
               <p>Dashboard</p>
             </a>
           </li>
+
+        <li class="nav-item">
+          <a href="{% url 'organization-list' %}">
+            <i class="la la-table"></i>
+            <p>Organization</p>
+            </a>
+        </li>
 
           <li class="nav-item">
            <a href="{% url 'member-list' %}">
