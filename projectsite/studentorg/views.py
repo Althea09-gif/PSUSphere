@@ -29,8 +29,7 @@ class HomePageView(ListView):
              
              )
        context["students_joined_this_year"] = count
-       context["organization_count"] = Organization.objects.count()
-       context["prog_count"] = Program.objects.count()
+
        return context
 
 
@@ -38,7 +37,8 @@ class OrganizationList(ListView):
     model = Organization
     context_object_name = 'organization' 
     template_name = 'org_list.html' 
-    paginate_by = 5 
+    paginate_by = 5
+    ordering = ["college__college_name","name"] 
     
     
     def get_queryset(self):
@@ -93,14 +93,6 @@ class MembersListView(ListView):
     return qs
 
 
-def get_ordering(self):
-    allowed = ["student__lastname", "date_joined"]
-    sort_by = self.request.GET.get("sort_by")
-
-    if sort_by in allowed:
-        return sort_by
-
-    return "student__lastname"
       
       
 
@@ -141,6 +133,7 @@ class StudentListView(ListView):
         )
 
     return qs
+    
 
 
 class StudentCreateView(CreateView):
@@ -159,6 +152,7 @@ class StudentDeleteView(DeleteView):
   model = Student
   template_name = 'student_del.html'
   success_url = reverse_lazy('student-list')
+
 
 class CollegeListView(ListView):
    model = College
@@ -186,6 +180,7 @@ class CollegeCreateView(CreateView):
   template_name = 'college_form.html'
   success_url = reverse_lazy('college-list')
 
+
 class CollegeUpdateView(UpdateView):
    model = College
    form_class = CollegeForm
@@ -203,18 +198,23 @@ class ProgramListView(ListView):
    context_object_name = 'program'
    template_name = 'program_list.html'
    paginate_by = 5
-   
+
+   def get_ordering(self):
+      allowed = ["prog_name", "college__college_name"]
+      sort_by = self.request.GET.get("sort_by")
+      if sort_by in allowed:
+         return sort_by
+      return "prog_name"
    
    def get_queryset(self):
     qs = super().get_queryset()
     query = self.request.GET.get('q')
 
     if query:
-        qs = qs.filter(
-            Q(prog_name__icontains=query) |
-            Q(college__college_name__icontains=query)
-        )
-
+      qs = qs.filter(
+        Q(prog_name__icontains=query) |
+        Q(college__college_name__icontains=query)
+      )
     return qs
 
 
