@@ -48,9 +48,11 @@
 											<td>{{ object.college }}</td>
 											<td>{{ object.description }}</td>
                                             <td>
-                                                <a href="organization_list/{{ object.id }}">Edit</a>
-                                                <a href="organization_list/{{ object.id }}/delete" class="text-danger">Delete</a>
-                                            </td> 
+                                           <div style="display: flex; gap: 10px;">
+											<a href="organization_list/{{ object.id }}">Edit</a>
+											<a href="organization_list/{{ object.id }}/delete" class="text-danger">Delete</a>
+										   </div>
+                                        </td>
                       </tr>
                       {% empty %}
                       <tr>
